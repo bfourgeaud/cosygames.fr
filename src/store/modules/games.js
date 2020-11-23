@@ -1,3 +1,6 @@
+import { set } from '@/utils/vuex'
+import { games } from '@/api/firebase'
+
 export default {
   namespaced: true,
 
@@ -97,6 +100,22 @@ export default {
         updated: 1545864353040,
       },
     ],
+  },
+
+  actions: {
+    getGames: async ({ commit }) => {
+      console.log('Refreshing games ...')
+      games.getAll()
+      .then(snapshot => {
+        const data = snapshot.docs.map(doc => Object.assign({ id: doc.id }, doc.data()))
+        console.log('retrieved games : ', data)
+        commit('setGames', data)
+      })
+    },
+  },
+
+  mutations: {
+    setGames: set('games'),
   },
 
   getters: {

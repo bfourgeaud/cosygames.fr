@@ -17,6 +17,11 @@
         />
       </v-col>
     </v-row>
+    <v-btn
+      @click="getGames"
+    >
+      Fetch from Server
+    </v-btn>
   </v-container>
 </template>
 
@@ -24,6 +29,7 @@
   // Utilities
   import {
     mapGetters,
+    mapActions,
   } from 'vuex'
 
   export default {
@@ -35,6 +41,10 @@
 
     computed: {
       ...mapGetters('library', ['games']),
+    },
+
+    methods: {
+      ...mapActions('games', ['getGames']),
     },
   }
 </script>

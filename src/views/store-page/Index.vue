@@ -26,7 +26,7 @@
             :color="game.buyColor || 'blue'"
             style="min-width: 225px; height: 52px;"
           >
-            Install
+            Add to Library
           </v-btn>
         </v-col>
       </v-row>
@@ -126,7 +126,7 @@
       ...mapGetters('games', ['parsedGames']),
       ...mapState('route', ['params']),
       game () {
-        return this.parsedGames.find(game => Number(game.id) === Number(this.params.id))
+        return this.parsedGames.find(game => game.id === this.params.id)
       },
     },
   }

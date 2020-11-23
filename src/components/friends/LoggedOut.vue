@@ -6,6 +6,7 @@
     >
       <v-window-item class="px-3">
         <v-text-field
+          v-model="authData.email"
           class="py-2"
           label="Email"
           hide-details
@@ -21,6 +22,7 @@
       <v-window-item class="px-3">
         <v-text-field
           ref="password"
+          v-model="authData.pass"
           class="py-2"
           hide-details
           label="Password"
@@ -29,8 +31,8 @@
           append-icon="mdi-login"
           outlined
           single-line
-          @click:append="login"
-          @keydown.enter="login"
+          @click:append="login(authData)"
+          @keydown.enter="login(authData)"
         />
       </v-window-item>
     </v-window>
@@ -48,6 +50,10 @@
 
     data: () => ({
       model: 0,
+      authData: {
+        email: '',
+        pass: '',
+      },
     }),
 
     watch: {
